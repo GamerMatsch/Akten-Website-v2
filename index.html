@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DRS — Patientenprotokoll</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <div class="scanline"></div>
+  <div class="topbar">made by matschreal</div>
+  <header>
+    <div class="header-left">
+      <span class="badge">DRS
+      </span>
+      <div>
+        <div class="header-title">Patientenprotokoll</div>
+        <div class="header-sub">Roleplay Rettungsdienst — Einsatzdokumentation</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button id="btn-save" class="btn btn-save">💾 Speichern</button>
+      <button id="btn-load" class="btn btn-load">📂 Laden</button>
+      <button id="btn-clear" class="btn btn-clear">🗑 Leeren</button>
+      <button id="btn-export" class="btn btn-export">📋 Kopieren</button>
+    </div>
+  </header>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <main>
+    <section class="card" id="stammdaten">
+      <div class="card-label">01 — Stammdaten</div>
+      <div class="grid-3">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" id="name" placeholder="Max Mustermann"/>
+        </div>
+        <div class="field">
+          <label>Geschlecht</label>
+          <select id="geschlecht">
+            <option value="">—</option>
+            <option>Männlich</option>
+            <option>Weiblich</option>
+            <option>Divers</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Alter</label>
+          <input type="number" id="alter" placeholder="25" min="0" max="130"/>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="abcde">
+      <div class="card-label">02 — ABCDE-Schema</div>
+
+      <div class="schema-block">
+        <div class="schema-letter">A</div>
+        <div class="schema-content">
+          <div class="schema-title">Atemwege</div>
+          <div class="grid-1">
+            <div class="field">
+              <label>Befund</label>
+              <input type="text" id="a_atemwege" placeholder="Frei / Verlegt / Gesichert..."/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="schema-block">
+        <div class="schema-letter">B</div>
+        <div class="schema-content">
+          <div class="schema-title">Atmung</div>
+          <div class="grid-2">
+            <div class="field">
+              <label>Atemfrequenz <span class="unit">/min</span></label>
+              <input type="number" id="b_af" placeholder="12–20"/>
+            </div>
+            <div class="field">
+              <label>Befund</label>
+              <input type="text" id="b_befund" placeholder="Normal / Dyspnoe / Apnoe..."/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="schema-block">
+        <div class="schema-letter">C</div>
+        <div class="schema-content">
+          <div class="schema-title">Circulation</div>
+          <div class="grid-3">
+            <div class="field">
+              <label>Puls <span class="unit">bpm</span></label>
+              <input type="number" id="c_puls" placeholder="60–100"/>
+            </div>
+            <div class="field">
+              <label>SpO₂ <span class="unit">%</span></label>
+              <input type="number" id="c_spo2" placeholder="95–100" min="0" max="100"/>
+            </div>
+            <div class="field">
+              <label>Blutdruck <span class="unit">mmHg</span></label>
+              <div class="bp-row">
+                <input type="number" id="c_rr_sys" placeholder="120"/>
+                <span class="bp-slash">/</span>
+                <input type="number" id="c_rr_dia" placeholder="80"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="schema-block">
+        <div class="schema-letter">D</div>
+        <div class="schema-content">
+          <div class="schema-title">Neurologie</div>
+          <div class="grid-2">
+            <div class="field">
+              <label>Pupillen</label>
+              <input type="text" id="d_pupillen" placeholder="Isokor / Anisokor / Entrundet..."/>
+            </div>
+            <div class="field">
+              <label>DMS-Test</label>
+              <div class="dms-row">
+                <div class="dms-field">
+                  <span class="dms-label">D</span>
+                  <input type="text" id="d_dms_d" placeholder="Durchblutung"/>
+                </div>
+                <div class="dms-field">
+                  <span class="dms-label">M</span>
+                  <input type="text" id="d_dms_m" placeholder="Motorik"/>
+                </div>
+                <div class="dms-field">
+                  <span class="dms-label">S</span>
+                  <input type="text" id="d_dms_s" placeholder="Sensorik"/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subheading">BE-FAST-Schema</div>
+          <div class="grid-befast">
+            <div class="field">
+              <label><span class="befast-letter">B</span> Balance</label>
+              <input type="text" id="befast_b" placeholder="Gleichgewicht..."/>
+            </div>
+            <div class="field">
+              <label><span class="befast-letter">E</span> Eyes</label>
+              <input type="text" id="befast_e" placeholder="Sehstörung..."/>
+            </div>
+            <div class="field">
+              <label><span class="befast-letter">F</span> Face</label>
+              <input type="text" id="befast_f" placeholder="Gesichtslähmung..."/>
+            </div>
+            <div class="field">
+              <label><span class="befast-letter">A</span> Arms</label>
+              <input type="text" id="befast_a" placeholder="Armlähmung..."/>
+            </div>
+            <div class="field">
+              <label><span class="befast-letter">S</span> Speech</label>
+              <input type="text" id="befast_s" placeholder="Sprachstörung..."/>
+            </div>
+            <div class="field">
+              <label><span class="befast-letter">T</span> Time</label>
+              <input type="text" id="befast_t" placeholder="Zeitpunkt..."/>
+            </div>
+          </div>
+
+          <div class="grid-1">
+            <div class="field">
+              <label>Blutzucker <span class="unit">mg/dL</span></label>
+              <input type="number" id="d_bz" placeholder="70–110"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="schema-block">
+        <div class="schema-letter">E</div>
+        <div class="schema-content">
+          <div class="schema-title">Bodycheck</div>
+          <div class="grid-3">
+            <div class="field">
+              <label>Kopf</label>
+              <input type="text" id="e_kopf" placeholder="o.B. / Hämatom..."/>
+            </div>
+            <div class="field">
+              <label>HWS</label>
+              <input type="text" id="e_hws" placeholder="o.B. / Druckschmerz..."/>
+            </div>
+            <div class="field">
+              <label>Schlüsselbein</label>
+              <input type="text" id="e_schluessel" placeholder="o.B. / Fraktur..."/>
+            </div>
+            <div class="field">
+              <label>Bauch / Becken</label>
+              <input type="text" id="e_bauch" placeholder="o.B. / Druckschmerz..."/>
+            </div>
+            <div class="field">
+              <label>Arme</label>
+              <input type="text" id="e_arme" placeholder="o.B. / Verletzung..."/>
+            </div>
+            <div class="field">
+              <label>Beine</label>
+              <input type="text" id="e_beine" placeholder="o.B. / Fraktur..."/>
+            </div>
+            <div class="field">
+              <label>Füße</label>
+              <input type="text" id="e_fuesse" placeholder="o.B. / Verletzung..."/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="anamnese">
+      <div class="card-label">03 — Anamnese (SAMPLER)</div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Symptome</label>
+          <textarea id="symptome" rows="3" placeholder="Beschwerden des Patienten..."></textarea>
+        </div>
+        <div class="field">
+          <label>Allergien</label>
+          <textarea id="allergien" rows="3" placeholder="Bekannte Allergien..."></textarea>
+        </div>
+        <div class="field">
+          <label>Medikamente</label>
+          <textarea id="medikamente" rows="3" placeholder="Aktuelle Medikamente..."></textarea>
+        </div>
+        <div class="field">
+          <label>Vorerkrankungen</label>
+          <textarea id="vorerkrankungen" rows="3" placeholder="Bekannte Erkrankungen..."></textarea>
+        </div>
+        <div class="field">
+          <label>Letzter Krankenhausaufenthalt</label>
+          <input type="text" id="letzter_kh" placeholder="Datum / Grund..."/>
+        </div>
+        <div class="field">
+          <label>Letzte Mahlzeit</label>
+          <input type="text" id="letzte_mahlzeit" placeholder="Uhrzeit / Was..."/>
+        </div>
+        <div class="field">
+          <label>Letzter Trank</label>
+          <input type="text" id="letzter_trank" placeholder="Uhrzeit / Was..."/>
+        </div>
+        <div class="field">
+          <label>Letzter Stuhlgang</label>
+          <input type="text" id="letzter_stuhlgang" placeholder="Wann..."/>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="kontext">
+      <div class="card-label">04 — Einsatzkontext</div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Ereignis</label>
+          <textarea id="ereignis" rows="3" placeholder="Was ist passiert..."></textarea>
+        </div>
+        <div class="field">
+          <label>Risikofaktoren</label>
+          <textarea id="risikofaktoren" rows="3" placeholder="Rauchen, Alkohol, Sport, Stress..."></textarea>
+        </div>
+        <div class="field full-width">
+          <label>Schwangerschaft möglich?</label>
+          <div class="radio-row">
+            <label class="radio-label"><input type="radio" name="schwangerschaft" value="Ja"/> Ja</label>
+            <label class="radio-label"><input type="radio" name="schwangerschaft" value="Nein"/> Nein</label>
+            <label class="radio-label"><input type="radio" name="schwangerschaft" value="Unbekannt" checked/> Unbekannt</label>
+            <label class="radio-label"><input type="radio" name="schwangerschaft" value="N/A"/> N/A (Männlich)</label>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>DRS Patientenprotokoll — Roleplay Rettungsdienst</span>
+    <span id="timestamp"></span>
+  </footer>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-box">
+      <div class="modal-title">Gespeicherte Protokolle</div>
+      <div id="save-list"></div>
+      <button class="btn btn-clear" id="modal-close">Schließen</button>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

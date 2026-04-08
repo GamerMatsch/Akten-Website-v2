@@ -130,20 +130,13 @@ header {
   white-space: nowrap;
 }
 
-.btn:hover {
-  background: var(--surface2);
-  border-color: var(--text-dim);
-}
-
+.btn:hover { background: var(--surface2); border-color: var(--text-dim); }
 .btn-save { border-color: var(--accent); color: var(--accent); }
 .btn-save:hover { background: rgba(232, 55, 42, 0.15); box-shadow: var(--red-glow); }
-
 .btn-load { border-color: #3b82f6; color: #3b82f6; }
 .btn-load:hover { background: rgba(59, 130, 246, 0.1); }
-
 .btn-export { border-color: #22c55e; color: #22c55e; }
 .btn-export:hover { background: rgba(34, 197, 94, 0.1); }
-
 .btn-clear { border-color: var(--text-muted); color: var(--text-dim); }
 .btn-clear:hover { border-color: var(--text-dim); color: var(--text); }
 
@@ -209,6 +202,7 @@ main {
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .grid-befast { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+.grid-1-full { display: grid; grid-template-columns: 1fr; gap: 22px; }
 
 .field {
   display: flex;
@@ -303,24 +297,24 @@ input::placeholder, textarea::placeholder {
 .bp-row input { flex: 1; }
 .bp-slash { font-family: var(--mono); color: var(--text-dim); font-size: 1.4rem; }
 
-.dms-row { display: flex; gap: 10px; }
-
-.dms-field {
-  flex: 1;
+.dms-stack {
   display: flex;
-  gap: 8px;
-  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.dms-stack .field textarea {
+  min-height: 90px;
 }
 
 .dms-label {
   font-family: var(--mono);
-  font-size: 0.83rem;
+  font-size: 0.89rem;
   font-weight: 700;
   color: var(--accent2);
-  min-width: 16px;
+  margin-right: 4px;
 }
-
-.dms-field input { flex: 1; min-width: 0; }
 
 .subheading {
   font-family: var(--mono);
@@ -329,7 +323,7 @@ input::placeholder, textarea::placeholder {
   color: var(--accent2);
   text-transform: uppercase;
   margin-top: 22px;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--border);
 }
@@ -361,6 +355,10 @@ input::placeholder, textarea::placeholder {
   height: 18px;
   accent-color: var(--accent);
   cursor: pointer;
+}
+
+#zusatz textarea {
+  min-height: 140px;
 }
 
 footer {
@@ -430,7 +428,6 @@ footer {
 }
 
 .save-entry-date { font-size: 0.61rem; color: var(--text-dim); }
-
 .save-entry-actions { display: flex; gap: 8px; }
 
 .btn-sm {
@@ -465,7 +462,6 @@ footer {
   .btn { flex: 1; text-align: center; }
   .schema-block { flex-direction: column; gap: 12px; }
   .schema-letter { font-size: 1.6rem; width: auto; }
-  .dms-row { flex-direction: column; }
   footer { flex-direction: column; gap: 6px; text-align: center; }
   main { padding: 20px 14px 60px; }
   .card { padding: 20px 18px; }

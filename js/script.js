@@ -5,13 +5,14 @@ const fields = [
   'a_atemwege',
   'b_af','b_befund',
   'c_puls','c_spo2','c_rr_sys','c_rr_dia',
-  'd_pupillen','d_dms_d','d_dms_m','d_dms_s',
+  'd_pupillen','d_bz',
+  'd_dms_d','d_dms_m','d_dms_s',
   'befast_b','befast_e','befast_f','befast_a','befast_s','befast_t',
-  'd_bz',
   'e_kopf','e_hws','e_schluessel','e_bauch','e_arme','e_beine','e_fuesse',
   'symptome','allergien','medikamente','vorerkrankungen',
   'letzter_kh','letzte_mahlzeit','letzter_trank','letzter_stuhlgang',
-  'ereignis','risikofaktoren'
+  'ereignis','risikofaktoren',
+  'weitere_infos','massnahmen'
 ];
 
 function getData() {
@@ -137,10 +138,14 @@ function exportProtocol() {
     `Puls: ${d.c_puls} bpm   SpO2: ${d.c_spo2}%   RR: ${d.c_rr_sys}/${d.c_rr_dia} mmHg`,
     '',
     '── D: NEUROLOGIE ──',
-    `Pupillen: ${d.d_pupillen}`,
-    `DMS: D=${d.d_dms_d}  M=${d.d_dms_m}  S=${d.d_dms_s}`,
-    `BE-FAST: B=${d.befast_b} E=${d.befast_e} F=${d.befast_f} A=${d.befast_a} S=${d.befast_s} T=${d.befast_t}`,
-    `Blutzucker: ${d.d_bz} mg/dL`,
+    `Pupillen: ${d.d_pupillen}   Blutzucker: ${d.d_bz} mg/dL`,
+    '',
+    'DMS-Test:',
+    `  D (Durchblutung): ${d.d_dms_d}`,
+    `  M (Motorik): ${d.d_dms_m}`,
+    `  S (Sensorik): ${d.d_dms_s}`,
+    '',
+    `BE-FAST: B=${d.befast_b} | E=${d.befast_e} | F=${d.befast_f} | A=${d.befast_a} | S=${d.befast_s} | T=${d.befast_t}`,
     '',
     '── E: BODYCHECK ──',
     `Kopf: ${d.e_kopf}   HWS: ${d.e_hws}   Schlüsselbein: ${d.e_schluessel}`,
@@ -158,6 +163,11 @@ function exportProtocol() {
     `Ereignis: ${d.ereignis}`,
     `Risikofaktoren: ${d.risikofaktoren}`,
     `Schwangerschaft möglich: ${d.schwangerschaft}`,
+    '',
+    '── ZUSATZ ──',
+    `Weitere Infos: ${d.weitere_infos}`,
+    '',
+    `Ausgeführte Maßnahmen: ${d.massnahmen}`,
     '',
     `Exportiert: ${new Date().toLocaleString('de-DE')}`,
     '=================================='

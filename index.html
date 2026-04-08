@@ -13,8 +13,7 @@
   <div class="topbar">made by matschreal</div>
   <header>
     <div class="header-left">
-      <span class="badge">DRS
-      </span>
+      <span class="badge">DRS</span>
       <div>
         <div class="header-title">Patientenprotokoll</div>
         <div class="header-sub">Roleplay Rettungsdienst — Einsatzdokumentation</div>
@@ -61,11 +60,9 @@
         <div class="schema-letter">A</div>
         <div class="schema-content">
           <div class="schema-title">Atemwege</div>
-          <div class="grid-1">
-            <div class="field">
-              <label>Befund</label>
-              <input type="text" id="a_atemwege" placeholder="Frei / Verlegt / Gesichert..."/>
-            </div>
+          <div class="field">
+            <label>Befund</label>
+            <input type="text" id="a_atemwege" placeholder="Frei / Verlegt / Gesichert..."/>
           </div>
         </div>
       </div>
@@ -116,27 +113,31 @@
         <div class="schema-letter">D</div>
         <div class="schema-content">
           <div class="schema-title">Neurologie</div>
+
           <div class="grid-2">
             <div class="field">
               <label>Pupillen</label>
               <input type="text" id="d_pupillen" placeholder="Isokor / Anisokor / Entrundet..."/>
             </div>
             <div class="field">
-              <label>DMS-Test</label>
-              <div class="dms-row">
-                <div class="dms-field">
-                  <span class="dms-label">D</span>
-                  <input type="text" id="d_dms_d" placeholder="Durchblutung"/>
-                </div>
-                <div class="dms-field">
-                  <span class="dms-label">M</span>
-                  <input type="text" id="d_dms_m" placeholder="Motorik"/>
-                </div>
-                <div class="dms-field">
-                  <span class="dms-label">S</span>
-                  <input type="text" id="d_dms_s" placeholder="Sensorik"/>
-                </div>
-              </div>
+              <label>Blutzucker <span class="unit">mg/dL</span></label>
+              <input type="number" id="d_bz" placeholder="70–110"/>
+            </div>
+          </div>
+
+          <div class="subheading">DMS-Test</div>
+          <div class="dms-stack">
+            <div class="field">
+              <label><span class="dms-label">D</span> Durchblutung</label>
+              <textarea id="d_dms_d" rows="3" placeholder="Kapillarfüllungszeit, Hautfarbe, Temperatur..."></textarea>
+            </div>
+            <div class="field">
+              <label><span class="dms-label">M</span> Motorik</label>
+              <textarea id="d_dms_m" rows="3" placeholder="Beweglichkeit, Kraftgrad, Lähmungen..."></textarea>
+            </div>
+            <div class="field">
+              <label><span class="dms-label">S</span> Sensorik</label>
+              <textarea id="d_dms_s" rows="3" placeholder="Gefühl, Kribbeln, Taubheit..."></textarea>
             </div>
           </div>
 
@@ -165,13 +166,6 @@
             <div class="field">
               <label><span class="befast-letter">T</span> Time</label>
               <input type="text" id="befast_t" placeholder="Zeitpunkt..."/>
-            </div>
-          </div>
-
-          <div class="grid-1">
-            <div class="field">
-              <label>Blutzucker <span class="unit">mg/dL</span></label>
-              <input type="number" id="d_bz" placeholder="70–110"/>
             </div>
           </div>
         </div>
@@ -272,6 +266,20 @@
             <label class="radio-label"><input type="radio" name="schwangerschaft" value="Unbekannt" checked/> Unbekannt</label>
             <label class="radio-label"><input type="radio" name="schwangerschaft" value="N/A"/> N/A (Männlich)</label>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="zusatz">
+      <div class="card-label">05 — Zusatzinformationen</div>
+      <div class="grid-1-full">
+        <div class="field">
+          <label>Weitere Infos</label>
+          <textarea id="weitere_infos" rows="6" placeholder="Weitere relevante Informationen, Beobachtungen, Notizen..."></textarea>
+        </div>
+        <div class="field">
+          <label>Ausgeführte Maßnahmen</label>
+          <textarea id="massnahmen" rows="6" placeholder="z.B. O₂-Gabe, IV-Zugang, Schienung, Defi, Medikamentengabe, Lagerung..."></textarea>
         </div>
       </div>
     </section>
